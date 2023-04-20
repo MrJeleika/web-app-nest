@@ -25,7 +25,7 @@ export class LessonNamesService {
         lesson_name_id: id,
       }
     })
-    lessons.forEach(async(lesson) =>  {
+    await lessons.forEach(async(lesson) =>  {
       const {id} = await this.dbservice.schedule.findFirst({
         where:{
           lesson_id: lesson.id,
@@ -49,7 +49,7 @@ export class LessonNamesService {
         lesson_name_id: id,
       }
     })
-    exceptions.forEach(async(exception) =>  {
+    await exceptions.forEach(async(exception) =>  {
       const {id} = await this.dbservice.schedule.findFirst({
         where:{
           exception_id: exception.id,
