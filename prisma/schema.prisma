@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model exceptions {
+  id             String       @id @default(uuid())
+  lesson_name_id String
+  teacher_id     String
+  link_id        String?
+  group          Int
+  time           String?      @db.VarChar(5)
+  date           String?      @db.VarChar(100)
+  type           String       @db.VarChar(20)
+  ref            String?
+  lesson_names   lesson_names @relation(fields: [lesson_name_id], references: [id], onUpdate: Restrict, map: "exceptions_ibfk_1")
+  teachers       teachers     @relation(fields: [teacher_id], references: [id], onUpdate: Restrict, map: "exceptions_ibfk_2")
+  lessons        lessons?     @relation(fields: [ref], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "exceptions_ibfk_3")
+  schedule       schedule[]
+  links          links?       @relation(fields: [link_id], references: [id], onUpdate: Restrict, map: "exceptions_ibfk_4")
+
+  @@index([lesson_name_id], map: "exceptions_ibfk_1")
+  @@index([teacher_id], map: "exceptions_ibfk_2")
+  @@index([link_id], map: "exceptions_ibfk_4")
+  @@index([ref], map: "ref")
+}
+
+model lesson_names {
+  id         String       @id @default(uuid())
+  name       String       @db.VarChar(100)
+  exceptions exceptions[]
+  lessons    lessons[]
+}
+
+model lessons {
+  id             String       @id @default(uuid())
+  lesson_name_id String
+  teacher_id     String
+  link_id        String?
+  group          Int
+  time           String?      @db.VarChar(5)
+  type           String       @db.VarChar(20)
+  exceptions     exceptions[]
+  lesson_names   lesson_names @relation(fields: [lesson_name_id], references: [id], onUpdate: Restrict, map: "lessons_ibfk_1")
+  teachers       teachers     @relation(fields: [teacher_id], references: [id], onUpdate: Restrict, map: "lessons_ibfk_2")
+  links          links?       @relation(fields: [link_id], references: [id], onUpdate: Restrict, map: "lessons_ibfk_3")
+  schedule       schedule[]
+
+  @@index([lesson_name_id], map: "lessons_ibfk_1")
+  @@index([teacher_id], map: "lessons_ibfk_2")
+  @@index([link_id], map: "lessons_ibfk_3")
+}
+
+model schedule {
+  day          Int         @default(0)
+  lesson_id    String?
+  exception_id String?
+  id           String      @id @default(uuid())
+  week         Int
+  lessons      lessons?    @relation(fields: [lesson_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "schedule_ibfk_1")
+  exceptions   exceptions? @relation(fields: [exception_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "schedule_ibfk_2")
+
+  @@index([lesson_id], map: "schedule_ibfk_1")
+  @@index([exception_id], map: "schedule_ibfk_2")
+}
+
+model teachers {
+  id         String       @id @default(uuid())
+  name       String       @db.VarChar(100)
+  exceptions exceptions[]
+  lessons    lessons[]
+}
+
+model links {
+  id         String       @id @default(uuid())
+  name       String       @db.VarChar(100)
+  link       String       @db.VarChar(100)
+  exceptions exceptions[]
+  lessons    lessons[]
+}
