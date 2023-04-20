@@ -18,14 +18,15 @@ export class LessonNamesService {
     return await this.dbservice.lesson_names.create({data});
   }
   async deleteOne(id: string){
-    console.log(id);
+
     
-    // // Delete all lessons that have this lesson name
-    // const lessons = await this.dbservice.lessons.findMany({
-    //   where:{
-    //     lesson_name_id: id,
-    //   }
-    // })
+    // Delete all lessons that have this lesson name
+    const lessons = await this.dbservice.lessons.findMany({
+      where:{
+        lesson_name_id: id,
+      }
+    })
+    console.log(lessons);
     // await lessons.forEach(async(lesson) =>  {
     //   const {id} = await this.dbservice.schedule.findFirst({
     //     where:{
@@ -44,12 +45,14 @@ export class LessonNamesService {
     //   }
     // })
 
-    // // Delete all exceptions that have this lesson name
-    // const exceptions = await this.dbservice.exceptions.findMany({
-    //   where:{
-    //     lesson_name_id: id,
-    //   }
-    // })
+
+    // Delete all exceptions that have this lesson name
+    const exceptions = await this.dbservice.exceptions.findMany({
+      where:{
+        lesson_name_id: id,
+      }
+    })
+    console.log(exceptions);
     // await exceptions.forEach(async(exception) =>  {
     //   const {id} = await this.dbservice.schedule.findFirst({
     //     where:{
