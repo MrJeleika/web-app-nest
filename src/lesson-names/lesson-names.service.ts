@@ -19,55 +19,59 @@ export class LessonNamesService {
   }
   async deleteOne(id: string){
 
-    // Delete all lessons that have this lesson name
-    const lessons = await this.dbservice.lessons.findMany({
-      where:{
-        lesson_name_id: id,
-      }
-    })
-    // await lessons.forEach(async(lesson) =>  {
-    //   const {id} = await this.dbservice.schedule.findFirst({
-    //     where:{
-    //       lesson_id: lesson.id,
-    //     }
-    //   })
-    //   await this.dbservice.schedule.delete({
-    //     where:{
-    //       id
-    //     }
-    //   })
-    // })
-    await this.dbservice.lessons.deleteMany({
-      where: {
-        lesson_name_id: id
-      }
-    })
-
     // Delete all exceptions that have this lesson name
     const exceptions = await this.dbservice.exceptions.findMany({
       where:{
         lesson_name_id: id,
       }
     })
-    // await exceptions.forEach(async(exception) =>  {
-    //   const {id} = await this.dbservice.schedule.findFirst({
-    //     where:{
-    //       exception_id: exception.id,
-    //     }
-    //   })
-    //   await this.dbservice.schedule.delete({
-    //     where:{
-    //       id
-    //     }
-    //   })
-    // })
-    // await this.dbservice.exceptions.deleteMany({
-    //   where: {
-    //     lesson_name_id: id
-    //   }
-    // })
+    await exceptions.forEach(async(exception) =>  {
+      const res = await this.dbservice.schedule.findFirst({
+        where:{
+          exception_id: exception.id,
+        }
+      })
+      if(res){
+        await this.dbservice.schedule.delete({
+          where:{
+            id: res.id
+          }
+        })
+      }
+    })
+    await this.dbservice.exceptions.deleteMany({
+      where: {
+        lesson_name_id: id
+      }
+    })
+    
 
-    // return await this.dbservice.lesson_names.delete({where: {id: id}});
-    return 1
+    // Delete all lessons that have this lesson name
+    const lessons = await this.dbservice.lessons.findMany({
+      where:{
+        lesson_name_id: id,
+      }
+    })
+    await lessons.forEach(async(lesson) =>  {
+      const res = await this.dbservice.schedule.findFirst({
+        where:{
+          lesson_id: lesson.id,
+        }
+      })
+      if(res){
+        await this.dbservice.schedule.delete({
+          where:{
+            id: res.id,
+          }
+        })
+      }
+    })
+    await this.dbservice.lessons.deleteMany({
+      where: {
+        lesson_name_id: id
+      }
+    })
+    return await this.dbservice.lesson_names.delete({where: {id: id}});
+
   }
 }
