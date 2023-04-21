@@ -10,9 +10,7 @@ import { formatDate } from 'src/utils';
 export class DayLessonsService {
   constructor(private dbservice: PrismaService){}
   
-  async findDayLesson(queryDate: string){
-    console.log(queryDate);
-    
+  async findDayLesson(queryDate: string){    
     const date = new Date(queryDate)
     const day = date.getWeekDay()
     const week = date.getWeek()
@@ -97,25 +95,21 @@ export class DayLessonsService {
         exceptions.push({day, week, id, group, type, time, lessonName, teacher, date, ref, link})
       }
     })
-    console.log(lessons);
-    console.log(formatDate(exceptions[0].date));
-    console.log(formatDate(date));
-    console.log(formatDate(exceptions[0].date) === formatDate(date));
     
     let dayLessons = lessons.map((lesson)=> {
 
       // find the exception in schedule
-      let dayException = exceptions.find((exception) => (lesson.time === exception.time || lesson.id === exception.ref) && formatDate(exception.date) === formatDate(date))      
+      let dayException = exceptions.find((exception) => (lesson.time === exception.time || lesson.id === exception.ref) && formatDate(exception.date) === formatDate(queryDate))      
       // if exception exists, return it
       return dayException ? dayException : lesson
     }).filter((lesson) => {
       if(!lesson.date) return lesson
-      if(lesson.date === formatDate(date)) return lesson
+      if(lesson.date === formatDate(queryDate)) return lesson
       if(lesson.time) return lesson
       return null
     })
 
-    dayLessons = [...dayLessons, ...exceptions.filter(exception => !dayLessons.includes(exception) && formatDate(exception.date) === formatDate(date))]
+    dayLessons = [...dayLessons, ...exceptions.filter(exception => !dayLessons.includes(exception) && formatDate(exception.date) === formatDate(queryDate))]
     
     return {lessons, dayLessons}
   }
