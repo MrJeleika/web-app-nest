@@ -8,8 +8,6 @@ const TGB = require('node-telegram-bot-api');
 
 const token = process.env.TOKEN
 
-
-
 @Injectable()
 export class TelegramService {
   private readonly bot: TelegramBot
