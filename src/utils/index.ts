@@ -12,6 +12,7 @@ declare global {
 // format date to remove timezone 
 export const formatDate = (date: Date | string): string => {
   console.log( moment(String(date)).format('L'));
+  console.log( moment(String(date),'L'));
   
 
   let index = String(date).indexOf(' (')
