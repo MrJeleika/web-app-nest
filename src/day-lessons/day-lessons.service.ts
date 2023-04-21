@@ -12,6 +12,8 @@ export class DayLessonsService {
   
   async findDayLesson(queryDate: string){  
       
+
+    // Get the 00:00 of current day
     const date = new Date(new Date(queryDate).getTime() + 3 * 60 * 60 * 1000)
     
     const day = date.getWeekDay()
@@ -107,13 +109,13 @@ export class DayLessonsService {
       if(lesson.time) return lesson
       return null
     })
+    // Add exceptions that are not in day lessons, like created or deleted exceptions
     dayLessons = [...dayLessons, ...exceptions.filter(exception => !dayLessons.includes(exception) && formatDate(exception.date) === formatDate(queryDate))]
   
     return {lessons, dayLessons}
   }
 
   async createDayLesson(data: CreateDayLessonDto, week: number, day: number){
-
     
     const { id } = await this.dbservice.exceptions.create({
       data

@@ -17,14 +17,13 @@ export class TelegramService {
     this.bot = new TGB(token, {polling: true});
     moment.locale('uk')
     
-
     this.bot.addListener('message', async (msg) =>{
 
       this.chatId = msg.chat.id;
       const {dayLessons} = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
       setInterval(() => this.sendScheduleOnTime(dayLessons), 60 * 1000)
     })
-    this.bot.onText(/\/schedule/ , async (msg) => {
+    this.bot.onText(/^\/schedule$/ , async (msg) => {
       console.log(formatDate(new Date(new Date().setHours(0, 0, 0, 0))));
       this.chatId = msg.chat.id;
       const {dayLessons} = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
