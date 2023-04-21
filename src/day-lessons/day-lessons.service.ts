@@ -14,6 +14,8 @@ export class DayLessonsService {
     console.log(queryDate);
       
     const date = new Date(formatDate(new Date(queryDate)))
+    console.log(date);
+    
     const day = date.getWeekDay()
     const week = date.getWeek()
     console.log(day);
