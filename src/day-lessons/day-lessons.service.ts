@@ -96,7 +96,9 @@ export class DayLessonsService {
         exceptions.push({day, week, id, group, type, time, lessonName, teacher, date, ref, link})
       }
     })
-
+    console.log(lessons);
+    console.log(exceptions);
+    
     let dayLessons = lessons.map((lesson)=> {
 
       // find the exception in schedule
