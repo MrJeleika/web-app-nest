@@ -104,12 +104,14 @@ export class DayLessonsService {
       return dayException ? dayException : lesson
     }).filter((lesson) => {
       if(!lesson.date) return lesson
+      console.log(lesson);
+      
       if(lesson.date === formatDate(date)) return lesson
       if(lesson.time) return lesson
       return null
     })
-    dayLessons = [...dayLessons, ...exceptions.filter(exception => !dayLessons.includes(exception) && exception.date === formatDate(date))]
     console.log(dayLessons);
+    dayLessons = [...dayLessons, ...exceptions.filter(exception => !dayLessons.includes(exception) && exception.date === formatDate(date))]
     
     return {lessons, dayLessons}
   }
