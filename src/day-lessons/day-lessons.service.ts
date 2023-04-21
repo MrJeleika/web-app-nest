@@ -98,14 +98,13 @@ export class DayLessonsService {
     })
     console.log(lessons);
     console.log(formatDate(exceptions[0].date));
+    console.log(formatDate(date));
     console.log(formatDate(exceptions[0].date) === formatDate(date));
     
     let dayLessons = lessons.map((lesson)=> {
 
       // find the exception in schedule
-      let dayException = exceptions.find((exception) => (lesson.time === exception.time || lesson.id === exception.ref) && formatDate(exception.date) === formatDate(date))
-      console.log(dayException);
-      
+      let dayException = exceptions.find((exception) => (lesson.time === exception.time || lesson.id === exception.ref) && formatDate(exception.date) === formatDate(date))      
       // if exception exists, return it
       return dayException ? dayException : lesson
     }).filter((lesson) => {
@@ -114,7 +113,7 @@ export class DayLessonsService {
       if(lesson.time) return lesson
       return null
     })
-    console.log(date);
+
     dayLessons = [...dayLessons, ...exceptions.filter(exception => !dayLessons.includes(exception) && formatDate(exception.date) === formatDate(date))]
     
     return {lessons, dayLessons}
