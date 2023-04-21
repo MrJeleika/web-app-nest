@@ -7,7 +7,7 @@ import { daysOfWeek, formatDate } from 'src/utils';
 const TGB = require('node-telegram-bot-api');
 
 const token = process.env.TOKEN
-const date = new Date(new Date().setHours(3, 0, 0, 0))
+const date = new Date(new Date().setHours(27, 0, 0, 0))
 
 
 
