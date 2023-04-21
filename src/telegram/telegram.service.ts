@@ -8,7 +8,7 @@ const TGB = require('node-telegram-bot-api');
 
 const token = process.env.TOKEN
 const date = new Date(new Date().setHours(3, 0, 0, 0))
-console.log(date);
+
 
 
 @Injectable()
@@ -27,6 +27,7 @@ export class TelegramService {
       setInterval(() => this.sendScheduleOnTime(dayLessons), 60 * 1000)
     })
     this.bot.onText(/\/schedule/ , async (msg) => {
+      console.log(date);
       this.chatId = msg.chat.id;
       const {dayLessons} = await this.dayLessonsService.findDayLesson(formatDate(date))
       this.sendSchedule(dayLessons)
