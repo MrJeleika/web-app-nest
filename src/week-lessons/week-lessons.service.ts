@@ -76,8 +76,6 @@ export class WeekLessonsService {
   }
 
   async createWeekLesson(data: CreateWeekLessonDto, day:number, week: number){
-;
-    
     const lesson = await this.dbservice.lessons.create({data})
     return await this.dbservice.schedule.create({data:{lesson_id: lesson.id, day, week}})
   }

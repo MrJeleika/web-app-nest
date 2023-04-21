@@ -15,7 +15,10 @@ export class DayLessonsService {
     const date = new Date(queryDate)
     const day = date.getWeekDay()
     const week = date.getWeek()
-
+    console.log(week);
+    console.log(day);
+    
+    
     const res = await this.dbservice.schedule.findMany({
       where:{
         day,
