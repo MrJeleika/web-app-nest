@@ -5,6 +5,7 @@ declare global {
     getWeekDay(): number
     getWeek(): number
     timeNow(): string
+    addHours(h: number): any
   }
 }
 
@@ -19,6 +20,12 @@ export const formatDate = (date: Date | string): string => {
 
 Date.prototype.getWeekDay = function () {
   return this.getDay() + 1
+}
+
+
+Date.prototype.addHours = function(h) {
+  this.setTime(this.getTime() + (h*60*60*1000));
+  return this;
 }
 
 Date.prototype.getWeek = function (): number {
