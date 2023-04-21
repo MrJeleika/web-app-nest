@@ -97,7 +97,7 @@ export class DayLessonsService {
       }
     })
     console.log(lessons);
-    console.log(exceptions);
+    console.log(formatDate(exceptions[0].date));
     
     let dayLessons = lessons.map((lesson)=> {
 
