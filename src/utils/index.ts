@@ -19,9 +19,8 @@ export const formatDate = (date: Date | string): string => {
 }
 
 Date.prototype.getWeekDay = function () {
-  return this.getDay() + 1
+  return (this.getDay() === 0 ? 6 : this.getDay() - 1) + 1
 }
-
 
 Date.prototype.addHours = function(h) {
   this.setTime(this.getTime() + (h*60*60*1000));
