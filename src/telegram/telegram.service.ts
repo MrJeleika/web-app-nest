@@ -30,7 +30,6 @@ export class TelegramService {
       console.log(formatDate(new Date(new Date().setHours(0, 0, 0, 0))));
       this.chatId = msg.chat.id;
       const {dayLessons} = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
-      console.log(dayLessons);
       
       this.sendSchedule(dayLessons)
     })
@@ -68,8 +67,8 @@ export class TelegramService {
 
     // Making a string message
     dayLessons.sort((a,b) => a.time > b.time ? 1 : -1 ).forEach(dayLesson => {
-        firstGroupMessage = makeStringMessage(1, dayLesson)
-        secondGroupMessage = makeStringMessage(2, dayLesson)
+        firstGroupMessage += makeStringMessage(1, dayLesson)
+        secondGroupMessage += makeStringMessage(2, dayLesson)
     })
 
     this.bot.sendMessage(this.chatId, '<b>Пари на ' + moment().format('L') + ` ${daysOfWeek[new Date(new Date().setHours(0, 0, 0, 0)).getWeekDay() - 1]} ${new Date(new Date().setHours(0, 0, 0, 0)).getWeek()}:</b>\n\n`
