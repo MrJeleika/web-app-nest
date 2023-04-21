@@ -91,20 +91,20 @@ export class DayLessonsService {
       if(lesson.exceptions){
         const {day, week, exceptions:{id, group, ref, type, time, date, lesson_names:{name: lessonName}, teachers:{name: teacher}}} = lesson
         // Check if link exists
-        console.log(lesson.exceptions.date)
         let link:string = ''
         if(lesson.exceptions.links)  link = lesson.exceptions.links.link
         exceptions.push({day, week, id, group, type, time, lessonName, teacher, date, ref, link})
       }
     })
     let dayLessons = lessons.map((lesson)=> {
+      console.log(lesson);
       // find the exception in schedule
       let dayException = exceptions.find((exception) => (lesson.time === exception.time || lesson.id === exception.ref) && exception.date === formatDate(date))
       // if exception exists, return it
       return dayException ? dayException : lesson
     }).filter((lesson) => {
       if(!lesson.date) return lesson
-      console.log(lesson);
+
       
       if(lesson.date === formatDate(date)) return lesson
       if(lesson.time) return lesson
