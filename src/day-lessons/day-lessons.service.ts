@@ -9,12 +9,11 @@ import { formatDate } from 'src/utils';
 @Injectable()
 export class DayLessonsService {
   constructor(private dbservice: PrismaService){}
-
+  
   async findDayLesson(queryDate: string){
+    console.log(queryDate);
     
-    const date = new Date(queryDate).addHours(3)
-    console.log(date);
-    
+    const date = new Date(queryDate)
     const day = date.getWeekDay()
     const week = date.getWeek()
     
