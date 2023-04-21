@@ -13,7 +13,7 @@ export class DayLessonsService {
   async findDayLesson(queryDate: string){  
     console.log(queryDate);
       
-    const date = new Date(new Date(queryDate).getTime() + 3 * 60 * 1000)
+    const date = new Date(new Date(queryDate).getTime() + 3 * 60 * 60 * 1000)
     console.log(date);
     
     const day = date.getWeekDay()
