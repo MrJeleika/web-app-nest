@@ -30,6 +30,8 @@ export class TelegramService {
       console.log(formatDate(new Date(new Date().setHours(0, 0, 0, 0))));
       this.chatId = msg.chat.id;
       const {dayLessons} = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
+      console.log(dayLessons);
+      
       this.sendSchedule(dayLessons)
     })
   }
