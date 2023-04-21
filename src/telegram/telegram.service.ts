@@ -27,7 +27,7 @@ export class TelegramService {
       setInterval(() => this.sendScheduleOnTime(dayLessons), 60 * 1000)
     })
     this.bot.onText(/\/schedule/ , async (msg) => {
-      console.log(new Date(new Date().setHours(0, 0, 0, 0)));
+      console.log(formatDate(new Date(new Date().setHours(0, 0, 0, 0))));
       this.chatId = msg.chat.id;
       const {dayLessons} = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
       this.sendSchedule(dayLessons)
