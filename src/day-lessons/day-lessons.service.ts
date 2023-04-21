@@ -13,7 +13,7 @@ export class DayLessonsService {
   async findDayLesson(queryDate: string){  
     console.log(queryDate);
       
-    const date = new Date(queryDate)
+    const date = new Date(formatDate(new Date(queryDate)))
     const day = date.getWeekDay()
     const week = date.getWeek()
     console.log(day);
