@@ -15,8 +15,6 @@ export class DayLessonsService {
     const date = new Date(queryDate)
     const day = date.getWeekDay()
     const week = date.getWeek()
-    console.log(week);
-    console.log(day);
     
     
     const res = await this.dbservice.schedule.findMany({
@@ -80,6 +78,7 @@ export class DayLessonsService {
 
     const lessons: ILesson[] = []
     const exceptions: IException[] = []
+    console.log(res);
     
     res.forEach((lesson) => {
       if(lesson.lessons){
@@ -110,6 +109,7 @@ export class DayLessonsService {
       return null
     })
     dayLessons = [...dayLessons, ...exceptions.filter(exception => !dayLessons.includes(exception) && exception.date === formatDate(date))]
+    console.log(dayLessons);
     
     return {lessons, dayLessons}
   }
