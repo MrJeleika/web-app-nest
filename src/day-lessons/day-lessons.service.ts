@@ -11,16 +11,11 @@ export class DayLessonsService {
   constructor(private dbservice: PrismaService){}
   
   async findDayLesson(queryDate: string){  
-    console.log(queryDate);
       
     const date = new Date(new Date(queryDate).getTime() + 3 * 60 * 60 * 1000)
-    console.log(date);
     
     const day = date.getWeekDay()
     const week = date.getWeek()
-    console.log(day);
-    console.log(week);
-    
     
     const res = await this.dbservice.schedule.findMany({
       where:{
@@ -113,10 +108,8 @@ export class DayLessonsService {
       if(lesson.time) return lesson
       return null
     })
-    console.log(dayLessons);
-    
     dayLessons = [...dayLessons, ...exceptions.filter(exception => !dayLessons.includes(exception) && formatDate(exception.date) === formatDate(queryDate))]
-    
+  
     return {lessons, dayLessons}
   }
 
