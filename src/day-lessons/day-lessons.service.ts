@@ -98,6 +98,7 @@ export class DayLessonsService {
     })
     console.log(lessons);
     console.log(formatDate(exceptions[0].date));
+    console.log(formatDate(exceptions[0].date) === formatDate(date));
     
     let dayLessons = lessons.map((lesson)=> {
 
