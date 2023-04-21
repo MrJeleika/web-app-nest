@@ -7,7 +7,6 @@ import { daysOfWeek, formatDate } from 'src/utils';
 const TGB = require('node-telegram-bot-api');
 
 const token = process.env.TOKEN
-const date = new Date(new Date().setHours(0, 0, 0, 0))
 
 
 
@@ -22,14 +21,15 @@ export class TelegramService {
     
 
     this.bot.addListener('message', async (msg) =>{
+
       this.chatId = msg.chat.id;
-      const {dayLessons} = await this.dayLessonsService.findDayLesson(formatDate(date))
+      const {dayLessons} = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
       setInterval(() => this.sendScheduleOnTime(dayLessons), 60 * 1000)
     })
     this.bot.onText(/\/schedule/ , async (msg) => {
       console.log(new Date(new Date().setHours(0, 0, 0, 0)));
       this.chatId = msg.chat.id;
-      const {dayLessons} = await this.dayLessonsService.findDayLesson(formatDate(date))
+      const {dayLessons} = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
       this.sendSchedule(dayLessons)
     })
   }
@@ -70,7 +70,7 @@ export class TelegramService {
         secondGroupMessage = makeStringMessage(2, dayLesson)
     })
 
-    this.bot.sendMessage(this.chatId, '<b>Пари на ' + moment().format('L') + ` ${daysOfWeek[date.getWeekDay()]} ${date.getWeek()}:</b>\n\n`
+    this.bot.sendMessage(this.chatId, '<b>Пари на ' + moment().format('L') + ` ${daysOfWeek[new Date(new Date().setHours(0, 0, 0, 0)).getWeekDay()]} ${new Date(new Date().setHours(0, 0, 0, 0)).getWeek()}:</b>\n\n`
     + `<b>Перша підгрупа:</b>\n` + firstGroupMessage + '\n' 
     + `<b>Друга підгрупа:</b>\n` + secondGroupMessage + '\n',
     {parse_mode: "HTML"});
