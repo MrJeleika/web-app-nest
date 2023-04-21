@@ -97,7 +97,6 @@ export class DayLessonsService {
     })
     
     let dayLessons = lessons.map((lesson)=> {
-
       // find the exception in schedule
       let dayException = exceptions.find((exception) => (lesson.time === exception.time || lesson.id === exception.ref) && formatDate(exception.date) === formatDate(queryDate))      
       // if exception exists, return it
