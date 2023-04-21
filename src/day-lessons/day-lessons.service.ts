@@ -10,10 +10,14 @@ import { formatDate } from 'src/utils';
 export class DayLessonsService {
   constructor(private dbservice: PrismaService){}
   
-  async findDayLesson(queryDate: string){    
+  async findDayLesson(queryDate: string){  
+    console.log(queryDate);
+      
     const date = new Date(queryDate)
     const day = date.getWeekDay()
     const week = date.getWeek()
+    console.log(day);
+    console.log(week);
     
     
     const res = await this.dbservice.schedule.findMany({
