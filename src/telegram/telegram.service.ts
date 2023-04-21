@@ -8,6 +8,7 @@ const TGB = require('node-telegram-bot-api');
 
 const token = process.env.TOKEN
 const date = new Date(new Date().setHours(3, 0, 0, 0))
+console.log(date);
 
 
 @Injectable()
