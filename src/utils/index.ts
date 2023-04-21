@@ -15,7 +15,7 @@ export const formatDate = (date: Date | string): string => {
 }
 
 Date.prototype.getWeekDay = function () {
-  return this.getDay()
+  return this.getDay() + 1
 }
 
 Date.prototype.getWeek = function (): number {
