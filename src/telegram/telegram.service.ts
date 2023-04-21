@@ -70,7 +70,7 @@ export class TelegramService {
         secondGroupMessage = makeStringMessage(2, dayLesson)
     })
 
-    this.bot.sendMessage(this.chatId, '<b>Пари на ' + moment().format('L') + ` ${daysOfWeek[new Date(new Date().setHours(0, 0, 0, 0)).getWeekDay()]} ${new Date(new Date().setHours(0, 0, 0, 0)).getWeek()}:</b>\n\n`
+    this.bot.sendMessage(this.chatId, '<b>Пари на ' + moment().format('L') + ` ${daysOfWeek[new Date(new Date().setHours(0, 0, 0, 0)).getWeekDay() - 1]} ${new Date(new Date().setHours(0, 0, 0, 0)).getWeek()}:</b>\n\n`
     + `<b>Перша підгрупа:</b>\n` + firstGroupMessage + '\n' 
     + `<b>Друга підгрупа:</b>\n` + secondGroupMessage + '\n',
     {parse_mode: "HTML"});

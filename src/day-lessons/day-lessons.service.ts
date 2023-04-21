@@ -83,7 +83,6 @@ export class DayLessonsService {
 
     const lessons: ILesson[] = []
     const exceptions: IException[] = []
-    console.log(res);
     
     res.forEach((lesson) => {
       if(lesson.lessons){
@@ -114,7 +113,8 @@ export class DayLessonsService {
       if(lesson.time) return lesson
       return null
     })
-
+    console.log(dayLessons);
+    
     dayLessons = [...dayLessons, ...exceptions.filter(exception => !dayLessons.includes(exception) && formatDate(exception.date) === formatDate(queryDate))]
     
     return {lessons, dayLessons}
