@@ -1,3 +1,5 @@
+import moment from "moment"
+
 declare global {
   interface Date {
     getWeekDay(): number
@@ -9,6 +11,9 @@ declare global {
 
 // format date to remove timezone 
 export const formatDate = (date: Date | string): string => {
+  console.log(  moment(date).format('L'));
+  
+
   let index = String(date).indexOf(' (')
   if (String(date).includes(' (')) return String(date).substring(0, index)
   return String(date)
