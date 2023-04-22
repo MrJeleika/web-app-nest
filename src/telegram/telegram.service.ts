@@ -32,7 +32,7 @@ export class TelegramService {
     })
     this.bot.onText(/^\/start$/, async (msg) => {
       this.chatId = msg.chat.id;
-
+      this.sendStartInfo()
     })
   }
 
