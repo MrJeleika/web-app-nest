@@ -78,7 +78,7 @@ export class TelegramService {
       { parse_mode: "HTML", disable_web_page_preview: true });
   }
   sendStartInfo(){
-    this.bot.sendMessage(this.chatId, 'Привіт 👀\n'+'<span class="tg-code">/schedule</span>', { parse_mode: "HTML", disable_web_page_preview: true })
+    this.bot.sendMessage(this.chatId, 'Привіт 👀\n'+'<span>/schedule</span>', { parse_mode: "HTML", disable_web_page_preview: true })
   }
 
 }
