@@ -73,8 +73,8 @@ export class TelegramService {
     })
 
     this.bot.sendMessage(this.chatId, '<b>Пари на ' + moment().format('L') + ` ${daysOfWeek[new Date(new Date().setHours(0, 0, 0, 0)).getWeekDay() - 1]} ${new Date(new Date().setHours(0, 0, 0, 0)).getWeek()}:</b>\n\n`
-      + `<b>Перша підгрупа:</b>\n` + firstGroupMessage ? firstGroupMessage : 'Пар немає' + '\n'
-        + `<b>Друга підгрупа:</b>\n` + secondGroupMessage ? secondGroupMessage : 'Пар немає' + '\n',
+      + `<b>Перша підгрупа:</b>\n` + 'Пар немає' + '\n'
+        + `<b>Друга підгрупа:</b>\n` + 'Пар немає' + '\n',
       { parse_mode: "HTML", disable_web_page_preview: true });
   }
   sendStartInfo(){
