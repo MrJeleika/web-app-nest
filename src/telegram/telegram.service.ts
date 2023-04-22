@@ -63,6 +63,7 @@ export class TelegramService {
           scheduleString += dayLesson.teacher + '\n'
         }
       }
+      if(!scheduleString) return 'Пар немає'
       return scheduleString
     }
 
@@ -73,8 +74,8 @@ export class TelegramService {
     })
 
     this.bot.sendMessage(this.chatId, '<b>Пари на ' + moment().format('L') + ` ${daysOfWeek[new Date(new Date().setHours(0, 0, 0, 0)).getWeekDay() - 1]} ${new Date(new Date().setHours(0, 0, 0, 0)).getWeek()}:</b>\n\n`
-      + `<b>Перша підгрупа:</b>\n` + 'Пар немає' + '\n'
-        + `<b>Друга підгрупа:</b>\n` + 'Пар немає' + '\n',
+      + `<b>Перша підгрупа:</b>\n` + firstGroupMessage + '\n'
+        + `<b>Друга підгрупа:</b>\n` + secondGroupMessage + '\n',
       { parse_mode: "HTML", disable_web_page_preview: true });
   }
   sendStartInfo(){
