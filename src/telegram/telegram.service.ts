@@ -79,7 +79,7 @@ export class TelegramService {
       { parse_mode: "HTML", disable_web_page_preview: true });
   }
   sendStartInfo(){
-    this.bot.sendMessage(this.chatId, 'Привіт 👀\n'+'<b>/schedule</b>', { parse_mode: "HTML", disable_web_page_preview: true })
+    this.bot.sendMessage(this.chatId, 'Привіт 👀\n\n'+'Щоб отримати розклад на сьогодні - <b>/schedule</b>\n', { parse_mode: "HTML", disable_web_page_preview: true })
   }
 
 }
