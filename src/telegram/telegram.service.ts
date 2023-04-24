@@ -16,15 +16,7 @@ export class TelegramService {
   constructor(private dayLessonsService: DayLessonsService) {
     this.bot = new TGB(token, { polling: true });
     moment.locale('uk')
-
-    this.bot.addListener('message', async (msg) => {
-
-      this.chatId = msg.chat.id;
-      const { dayLessons } = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
-      setInterval(() => this.sendScheduleOnTime(dayLessons), 60 * 1000)
-    })
     this.bot.onText(/^\/schedule$/, async (msg) => {
-      console.log(formatDate(new Date(new Date().setHours(0, 0, 0, 0))));
       this.chatId = msg.chat.id;
       const { dayLessons } = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
 
@@ -33,12 +25,13 @@ export class TelegramService {
     this.bot.onText(/^\/start$/, async (msg) => {
       this.chatId = msg.chat.id;
       this.sendStartInfo()
+      setInterval(() => this.sendScheduleOnTime(), 60 * 1000)
     })
   }
 
-  sendScheduleOnTime(dayLessons: ILesson[]) {
+  async sendScheduleOnTime () {
     const sendTime: string = '15:55'
-
+    const { dayLessons } = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
     if (moment().format('LT') === sendTime) {
       this.sendSchedule(dayLessons)
     }
@@ -50,7 +43,7 @@ export class TelegramService {
 
     const makeStringMessage = (group: number, dayLesson: ILesson) => {
       let scheduleString: string = ''
-      if (dayLesson.group === group) {
+      if (dayLesson.group === group && dayLesson.time) {
 
         scheduleString += dayLesson.time + ' - '
         scheduleString += `${moment(dayLesson.time, 'HH:mm').add(95, 'minutes').hours()}:${moment(dayLesson.time, 'HH:mm').add(95, 'minutes').minutes()} | `
@@ -79,7 +72,7 @@ export class TelegramService {
       { parse_mode: "HTML", disable_web_page_preview: true });
   }
   sendStartInfo(){
-    this.bot.sendMessage(this.chatId, 'Привіт 👀\n\n'+'Щоб отримати розклад на сьогодні - <b>/schedule</b>\n', { parse_mode: "HTML", disable_web_page_preview: true })
+    this.bot.sendMessage(this.chatId, 'Привіт 👀\n\n'+'Щоб отримати розклад на сьогодні - <b>/schedule</b>\n\n'+'', { parse_mode: "HTML", disable_web_page_preview: true })
   }
 
 }
