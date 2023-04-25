@@ -23,7 +23,7 @@ TOKEN="Token of your telegram bot"
 ```
 
 
-### Frontend
+### Frontend:
 ```
 $ https://github.com/MrJeleika/web-app-telegram-react-mysql.git
 ```
