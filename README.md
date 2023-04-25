@@ -17,7 +17,7 @@ Improved version of
 ```
 $ git clone https://github.com/MrJeleika/web-app-nest.git
 ```
-Create .env file with following variables:
+Create `.env` file with following variables:
 ```
 DATABASE_URL="Url of your mysql database"
 TOKEN="Token of your telegram bot"
