@@ -5,26 +5,25 @@
 <p>
   App built with React, Redux, Redux Thunk, Chakra UI, Poke API, Formik, Sass, Bootstrap
 </p>
-<h2 align="center"><a  href="https://mrjeleika.github.io/pokedex/">Live Demo</a></h2>
+<h2 align="center"><a  href="https://t.me/pi123schedule_bot">Live Version</a></h2>
 
 ## Description
-Pokédex is catalog of information regarding the various species of Pokémon.
+Improved version of 
 
 ## Project setup
+
+Backend:
 ```
-$ git clone https://github.com/MrJeleika/pokedex.git
+$ git clone https://github.com/MrJeleika/web-app-nest.git
+```
+Create .env file with following variables:
+```
+DATABASE_URL="Url of your mysql database"
+TOKEN="Token of your telegram bot"
 ```
 
-npm
-
+Frontend
 ```
-$ npm install
-$ npm run start
+$ https://github.com/MrJeleika/web-app-telegram-react-mysql.git
 ```
-
-yarn
-
-```
-$ yarn
-$ yarn start
-```
+Replace `baseUrl` in src/redux/api/appApi.ts to url where backend running
