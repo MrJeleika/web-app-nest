@@ -4,7 +4,7 @@
 # Technologies
 <p>
   <strong>Backend:</strong> Nest, Prisma ORM, MYSQL.<br/>
-  *Frontend:* React, Redux Toolkit, Typescript, MUI, React-hook-form
+  <strong>Frontend:</strong> React, Redux Toolkit, Typescript, MUI, React-hook-form
 </p>
 <h2 align="center"><a  href="https://t.me/pi123schedule_bot">Live Version</a></h2>
 
