@@ -1,16 +1,16 @@
 <h1 align="center">Web app schedule</h1>
 <p align="center"><img  src="./readme_assets/main.png" width="70%"></p>
 
-## Technologies
+# Technologies
 <p>
   App built with React, Redux, Redux Thunk, Chakra UI, Poke API, Formik, Sass, Bootstrap
 </p>
 <h2 align="center"><a  href="https://t.me/pi123schedule_bot">Live Version</a></h2>
 
-## Description
+# Description
 Improved version of 
 
-## Project setup
+# Project setup
 
 ### Backend:
 ```
