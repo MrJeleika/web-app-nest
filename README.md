@@ -3,7 +3,8 @@
 
 # Technologies
 <p>
-  App built with React, Redux, Redux Thunk, Chakra UI, Poke API, Formik, Sass, Bootstrap
+  **Backend:**Nest, Prisma ORM, MYSQL.
+  **Frontend:**React, Redux Toolkit, Typescript, MUI, React-hook-form
 </p>
 <h2 align="center"><a  href="https://t.me/pi123schedule_bot">Live Version</a></h2>
 
