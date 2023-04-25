@@ -12,7 +12,7 @@ Improved version of
 
 ## Project setup
 
-#Backend:
+# Backend:
 ```
 $ git clone https://github.com/MrJeleika/web-app-nest.git
 ```
@@ -23,7 +23,7 @@ TOKEN="Token of your telegram bot"
 ```
 
 
-#Frontend
+# Frontend
 ```
 $ https://github.com/MrJeleika/web-app-telegram-react-mysql.git
 ```
