@@ -1,5 +1,5 @@
 <h1 align="center">Web app schedule</h1>
-<p align="center"><img  src="./readme_assets/main.png" width="70%"></p>
+<p align="center"><img src="./readme_assets/main.png" width="70%"></p>
 
 # Technologies
 <p>
