@@ -81,6 +81,5 @@ export class TelegramService {
     '🔗Посилання - Додати посилання до списку\n\n'
     , { parse_mode: "HTML", disable_web_page_preview: true })
   }
-
 }
 
