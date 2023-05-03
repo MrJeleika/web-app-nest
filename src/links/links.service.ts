@@ -12,7 +12,7 @@ export class LinksService {
 
 
   async deleteOne(id:string){
-   // Delete all exceptions that have this link
+    // Delete all exceptions that have this link
     const exceptions = await this.dbservice.exceptions.findMany({
       where:{
         link_id: id,
