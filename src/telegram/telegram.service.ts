@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import TelegramBot from 'node-telegram-bot-api';
 import { DayLessonsService } from 'src/day-lessons/day-lessons.service';
-import moment from "moment"
+import * as moment from "moment"
 import { ILesson } from 'src/week-lessons/interface';
 import { daysOfWeek, formatDate } from 'src/utils';
 const TGB = require('node-telegram-bot-api');
