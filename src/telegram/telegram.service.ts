@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import TelegramBot from 'node-telegram-bot-api';
 import { DayLessonsService } from 'src/day-lessons/day-lessons.service';
-import * as moment from 'moment';
+import moment from "moment"
 import { ILesson } from 'src/week-lessons/interface';
 import { daysOfWeek, formatDate } from 'src/utils';
 const TGB = require('node-telegram-bot-api');
@@ -30,10 +30,9 @@ export class TelegramService {
   }
 
   async sendScheduleOnTime () {
-    const sendTime: string = '19:45'
-    console.log(moment().format('LT'));
+    const sendTime: string = '19:46'
+    console.log(sendTime);
     
-
     const { dayLessons } = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
     if (moment().format('LT') === sendTime) {
       this.sendSchedule(dayLessons)
@@ -84,6 +83,5 @@ export class TelegramService {
     '🔗Посилання - Додати посилання до списку\n\n'
     , { parse_mode: "HTML", disable_web_page_preview: true })
   }
-
 }
 
