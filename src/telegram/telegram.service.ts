@@ -30,7 +30,7 @@ export class TelegramService {
   }
 
   async sendScheduleOnTime () {
-    const sendTime: string = '19:49'
+    const sendTime: string = '18:21'
     console.log(sendTime);
     console.log(moment('19:49').format('LT'));
     
