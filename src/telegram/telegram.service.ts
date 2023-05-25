@@ -29,14 +29,11 @@ export class TelegramService {
     })
   }
 
-  async sendScheduleOnTime () {
-    const sendTime: string = '18:21'
-    console.log(sendTime);
-    console.log(moment('19:49').format('LT'));
-    
+  async sendScheduleOnTime() {
+    const sendTime: string = '04:30'
+
     const { dayLessons } = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
-    console.log(dayLessons);
-    
+
     if (moment().format('LT') === sendTime) {
       this.sendSchedule(dayLessons)
     }
@@ -69,22 +66,22 @@ export class TelegramService {
       firstGroupMessage += makeStringMessage(1, dayLesson)
       secondGroupMessage += makeStringMessage(2, dayLesson)
     })
-    if(!firstGroupMessage) firstGroupMessage = 'Пар немає'
-    if(!secondGroupMessage) secondGroupMessage = 'Пар немає'
+    if (!firstGroupMessage) firstGroupMessage = 'Пар немає'
+    if (!secondGroupMessage) secondGroupMessage = 'Пар немає'
     this.bot.sendMessage(this.chatId, '<b>Пари на ' + moment().format('L') + ` ${daysOfWeek[new Date(new Date().setHours(0, 0, 0, 0)).getWeekDay() - 1]} ${new Date(new Date().setHours(0, 0, 0, 0)).getWeek()}:</b>\n\n`
       + `<b>Перша підгрупа:</b>\n` + firstGroupMessage + '\n'
-        + `<b>Друга підгрупа:</b>\n` + secondGroupMessage + '\n',
+      + `<b>Друга підгрупа:</b>\n` + secondGroupMessage + '\n',
       { parse_mode: "HTML", disable_web_page_preview: true });
   }
-  sendStartInfo(){
-    this.bot.sendMessage(this.chatId, 'Привіт 👀\n\n'+
-    '📃Щоб отримати розклад на сьогодні - <b>/schedule</b>\n\n'+
-    '🗓Змінити постійний розклад - змінити розклад на всі тижні\n\n'+
-    '📅Змінити розклад на день - змінити розклад на певну дату\n\n'+
-    '🔔Уроки - Додати назву уроку до списку\n\n'+
-    '👨‍🏫Вчителі - Додати вчителя до списку\n\n'+
-    '🔗Посилання - Додати посилання до списку\n\n'
-    , { parse_mode: "HTML", disable_web_page_preview: true })
+  sendStartInfo() {
+    this.bot.sendMessage(this.chatId, 'Привіт 👀\n\n' +
+      '📃Щоб отримати розклад на сьогодні - <b>/schedule</b>\n\n' +
+      '🗓Змінити постійний розклад - змінити розклад на всі тижні\n\n' +
+      '📅Змінити розклад на день - змінити розклад на певну дату\n\n' +
+      '🔔Уроки - Додати назву уроку до списку\n\n' +
+      '👨‍🏫Вчителі - Додати вчителя до списку\n\n' +
+      '🔗Посилання - Додати посилання до списку\n\n'
+      , { parse_mode: "HTML", disable_web_page_preview: true })
   }
 }
 
