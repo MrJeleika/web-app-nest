@@ -12,6 +12,8 @@ const token = process.env.TOKEN
 export class TelegramService {
   private readonly bot: TelegramBot
   private chatId: number
+  private intervalId: any
+
 
   constructor(private dayLessonsService: DayLessonsService) {
     this.bot = new TGB(token, { polling: true });
@@ -24,8 +26,8 @@ export class TelegramService {
     })
     this.bot.onText(/^\/start$/, async (msg) => {
       this.chatId = msg.chat.id;
-      this.sendStartInfo()
-      setInterval(() => this.sendScheduleOnTime(), 60 * 1000)
+      if(this.intervalId) clearInterval(this.intervalId)
+      this.intervalId = setInterval(() => this.sendScheduleOnTime(), 60 * 1000)
     })
   }
 
