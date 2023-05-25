@@ -26,14 +26,14 @@ export class TelegramService {
     })
     this.bot.onText(/^\/start$/, async (msg) => {
       this.chatId = msg.chat.id;
+      this.sendStartInfo()
       if(this.intervalId) clearInterval(this.intervalId)
       this.intervalId = setInterval(() => this.sendScheduleOnTime(), 60 * 1000)
     })
   }
 
   async sendScheduleOnTime() {
-    const sendTime: string = '8:36'
-
+    const sendTime: string = '08:44'
     const { dayLessons } = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
 
     if (moment().format('LT') === sendTime) {
@@ -44,7 +44,6 @@ export class TelegramService {
   sendSchedule(dayLessons: ILesson[]) {
     let firstGroupMessage: string = ''
     let secondGroupMessage: string = ''
-
     const makeStringMessage = (group: number, dayLesson: ILesson) => {
       let scheduleString: string = ''
       if (dayLesson.group === group && dayLesson.time) {
