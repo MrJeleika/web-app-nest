@@ -32,7 +32,7 @@ export class TelegramService {
   }
 
   async sendScheduleOnTime() {
-    const sendTime: string = '04:30'
+    const sendTime: string = '8:36'
 
     const { dayLessons } = await this.dayLessonsService.findDayLesson(formatDate(new Date(new Date().setHours(0, 0, 0, 0))))
 
